@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
+
 export default defineConfig({
     plugins: [
         laravel({
@@ -14,7 +15,12 @@ export default defineConfig({
                     base: null,
                     includeAbsolute: false,
                 },
+                // compilerOptions:{
+                //     isCustomElement: (tag) => ['v-data-table'].includes(tag),
+                // },
+                
             },
         }),
     ],
+
 });

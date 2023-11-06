@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [CommentController::class, 'index'])->name('index');
+Route::get("/show/form", [CommentController::class,"show"])->name("show.form");
+Route::post("/add/comment", [CommentController::class,"add"])->name("add.comment");
+Route::post("/store/files", [CommentController::class,"storeFiles"])->name("store.files");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
